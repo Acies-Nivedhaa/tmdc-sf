@@ -1,18 +1,18 @@
 tables:
-  - name: visit-sf
+  - name: visit_sf
     sql: {{ load_sql('visit-sf') }}
     description: Captures details of users and their visits
     public: true 
 
 
     joins:
-      - name: cost-sf
+      - name: cost_sf
         relationship: one_to_one
-        sql: "{TABLE.id} = {cost-sf.id}"
+        sql: "{TABLE.id} = {cost_sf.id}"
         
-      - name: revenue-sf
-        relationship: one_to_one
-        sql: "{TABLE.id} = {revenue-sf.id}"
+      # - name: revenue-sf
+      #   relationship: one_to_one
+      #   sql: "{TABLE.id} = {revenue-sf.id}"
 
     dimensions:
       - name: id
@@ -51,8 +51,4 @@ tables:
         column: page_count
         description: "Number of pages he viewed during the visit"
 
-    measures:
-      - name: profit
-        sql: ({revenue-sf.revenue}-{cost-sf.cost})
-        type: min 
-        description: Number of days since the customers last purchase.
+
