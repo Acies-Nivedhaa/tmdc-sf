@@ -9,8 +9,7 @@ tables:
       - name: cost-sf
         relationship: one_to_one
         sql: "{TABLE.id} = {cost-sf.id}"
-
-    joins:
+        
       - name: revenue-sf
         relationship: one_to_one
         sql: "{TABLE.id} = {revenue-sf.id}"
