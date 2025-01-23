@@ -1,0 +1,47 @@
+# name: nivesfdepot
+# version: v1
+# type: depot
+# tags:
+
+# layer: user
+# depot:
+#   type: snowflake
+#   description: 
+#   spec:
+#     warehouse: COMPUTE_WH
+#     url: sdxanuy-wr48932.snowflakecomputing.com
+#     database: TMDC_V1
+#   external: true
+#   connectionSecret:
+#     - acl: rw
+#       type: key-value-properties
+#       data:
+#         username: NIVEDHAA
+#         password: Skills@2025
+
+
+name: nivesfdepot
+version: v2alpha
+type: depot
+tags:
+  - Snowflake depot
+  - user data
+layer: user
+depot:
+  type: snowflake
+  description: Depot to fetch data from SNowflake datasource
+  snowflake:
+    warehouse: COMPUTE_WH
+    url: sdxanuy-wr48932.snowflakecomputing.com
+    database: TMDC_V1
+  external: true
+  secrets:
+    - name: nivesfdepot-r
+      keys: 
+        - nivesfdepot-r
+      allkeys: true
+
+    - name: nivesfdepot-rw
+      keys: 
+        - nivesfdepot-rw
+      allkeys: true
