@@ -9,10 +9,6 @@ tables:
       - name: cost_sf
         relationship: one_to_one
         sql: "{TABLE.id} = {cost_sf.id}"
-        
-      # - name: revenue-sf
-      #   relationship: one_to_one
-      #   sql: "{TABLE.id} = {revenue-sf.id}"
 
     dimensions:
       - name: id

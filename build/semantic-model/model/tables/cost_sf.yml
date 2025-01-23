@@ -1,13 +1,13 @@
 tables:
   - name: cost_sf
-    sql: {{ load_sql('cost_sf') }}
+    sql: {{ load_sql('cost-sf') }}
     description: Captures details of users and their activity on the website
     public: true 
 
     joins:
       - name: revenue_sf
         relationship: one_to_one
-        sql: "{TABLE.id} = {cost-sf.id}"
+        sql: "{TABLE.id} = {cost_sf.id}"
 
     dimensions:
       - name: id
@@ -30,6 +30,6 @@ tables:
       - name: profit
         sql: ({revenue_sf.revenue}-cost)
         type: min 
-        description: Number of days since the customers last purchase.
+        description: Profit earned
 
 

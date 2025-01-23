@@ -1,19 +1,18 @@
 views:
-  - name: purchase_frequency
-    description: This metric calculates the average number of times a product is purchased by customers within a given time period
+  - name: profit_sf
+    description: This metric calculates the profict from revenue and the cost
     public: true
     meta:
-      title: Product Purchase Frequency
+      title: user Engagement
       tags:   
         - DPDomain.User Engagement
-      metric:
-        expression: "*/45  * * * *"
-        timezone: "UTC"
-        window: "day"
-        excludes: 
-         - purchases
+      # metric:
+      #   expression: "0  * * * *"
+      #   timezone: "UTC"
+      #   window: "day"
+
     tables:
-      - join_path: visit-sf
+      - join_path: visit_sf
         prefix: true
         includes:
           - id
@@ -24,12 +23,12 @@ views:
           - landing_page
           - page_count
 
-      - join_path: revenue-sf
+      - join_path: revenue_sf
         prefix: true
         includes:
           - revenue
 
-      - join_path: cost-sf
+      - join_path: cost_sf
         prefix: true
         includes:
           - cost
