@@ -32,3 +32,4 @@ views:
         prefix: true
         includes:
           - cost
+          - profit

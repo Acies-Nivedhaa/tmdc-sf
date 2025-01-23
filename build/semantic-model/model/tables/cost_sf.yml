@@ -29,7 +29,7 @@ tables:
     measures:
       - name: profit
         sql: ({revenue_sf.revenue}-cost)
-        type: min 
+        type: number 
         description: Profit earned
 
 
