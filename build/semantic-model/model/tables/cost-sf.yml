@@ -1,0 +1,25 @@
+tables:
+  - name: cost-sf
+    sql: {{ load_sql('cost-sf') }}
+    description: Captures details of users and their activity on the website
+    public: true 
+
+    dimensions:
+      - name: id
+        type: number
+        column: id
+        description: "ID"
+        primary_key: true
+
+      - name: channel
+        type: string
+        column: channel
+        description: "Channel through which the customer got into the website"
+
+      - name: cost
+        type: number
+        column: cost
+        description: "Cost associated with the visit"
+
+
+

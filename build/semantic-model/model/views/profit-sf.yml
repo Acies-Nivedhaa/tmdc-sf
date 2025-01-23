@@ -1,0 +1,35 @@
+views:
+  - name: purchase_frequency
+    description: This metric calculates the average number of times a product is purchased by customers within a given time period
+    public: true
+    meta:
+      title: Product Purchase Frequency
+      tags:   
+        - DPDomain.User Engagement
+      metric:
+        expression: "*/45  * * * *"
+        timezone: "UTC"
+        window: "day"
+        excludes: 
+         - purchases
+    tables:
+      - join_path: visit-sf
+        prefix: true
+        includes:
+          - id
+          - date
+          - user_id
+          - device
+          - channel
+          - landing_page
+          - page_count
+
+      - join_path: revenue-sf
+        prefix: true
+        includes:
+          - revenue
+
+      - join_path: cost-sf
+        prefix: true
+        includes:
+          - cost

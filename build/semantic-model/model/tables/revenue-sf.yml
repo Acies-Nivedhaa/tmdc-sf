@@ -1,0 +1,19 @@
+tables:
+  - name: revenue-sf
+    sql: {{ load_sql('revenue-sf') }}
+    description: Captures details of users and their activity on the website
+    public: true 
+
+    dimensions:
+      - name: id
+        type: number
+        column: id
+        description: "ID"
+
+      - name: revenue
+        type: number
+        column: revenue
+        description: "Revenue generated with each visit"
+
+
+

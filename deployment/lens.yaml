@@ -1,16 +1,16 @@
 # RESOURCE META SECTION
-name: nivbooking360        # Lens Resource name (mandatory)
+name: userengagement        # Lens Resource name (mandatory)
 version: v1alpha             # Lens manifest version (mandatory)
 layer: user                  # DataOS Layer (optional)
 type: lens                   # Type of Resource (mandatory)
 tags:                        # Tags (optional)
     - lens
-description: booking360 lens2 deployment on DataOS 
+description: userengagement lens deployment on DataOS 
 
 lens:
   compute: runnable-default # Compute Resource that Lens should utilize (mandatory)
   secrets: # Referred Instance-secret configuration (**mandatory for private code repository, not required for public repository)
-    - name: nivbooking360-r # Referred Instance Secret name (mandatory)
+    - name: userengagement-r # Referred Instance Secret name (mandatory)
       allKeys: true # All keys within the secret are required or not (optional)
 
     # Data Source configuration     

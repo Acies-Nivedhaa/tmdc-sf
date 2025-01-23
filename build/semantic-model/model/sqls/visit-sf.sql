@@ -1,0 +1,10 @@
+SELECT
+    id,
+    date,
+    user_id,
+    device,
+    channel,
+    landing_page,
+    page_count
+FROM
+    public.visit

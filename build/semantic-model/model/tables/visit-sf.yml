@@ -1,0 +1,58 @@
+tables:
+  - name: visit-sf
+    sql: {{ load_sql('visit-sf') }}
+    description: Captures details of users and their visits
+    public: true 
+
+
+    joins:
+      - name: cost-sf
+        relationship: one_to_one
+        sql: "{TABLE.id} = {cost-sf.id}"
+
+    joins:
+      - name: revenue-sf
+        relationship: one_to_one
+        sql: "{TABLE.id} = {revenue-sf.id}"
+
+    dimensions:
+      - name: id
+        type: number
+        column: id
+        description: "ID"
+
+      - name: date
+        type: number
+        column: date
+        description: "Revenue generated with each visit"
+
+      - name: user_id
+        type: number
+        column: user_id
+        description: "Unique ID for each user"
+
+      - name: device
+        type: string
+        column: device
+        description: "Device used by the user"
+
+      - name: channel
+        type: string
+        column: channel
+        description: "Channel used by him"
+
+      - name: landing_page
+        type: string
+        column: landing_page
+        description: "The page he landed on during the visit"
+      
+      - name: page_count
+        type: number
+        column: page_count
+        description: "Number of pages he viewed during the visit"
+
+    measures:
+      - name: profit
+        sql: {revenue-sf.revenue}-{cost-sf.cost}
+        type: min 
+        description: Number of days since the customers last purchase.
