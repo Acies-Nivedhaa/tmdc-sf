@@ -9,6 +9,7 @@ tables:
         type: number
         column: id
         description: "ID"
+        primary_key: true
 
       - name: revenue
         type: number
