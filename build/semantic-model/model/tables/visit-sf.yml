@@ -53,6 +53,6 @@ tables:
 
     measures:
       - name: profit
-        sql: {revenue-sf.revenue}-{cost-sf.cost}
+        sql: ({revenue-sf.revenue}-{cost-sf.cost})
         type: min 
         description: Number of days since the customers last purchase.
