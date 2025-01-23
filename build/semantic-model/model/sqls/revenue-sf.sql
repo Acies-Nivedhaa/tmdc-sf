@@ -1,5 +1,5 @@
 SELECT
-    id,
+    id AS revenue_id,
     revenue
 FROM
-    public.revenue
+    nivesfdepot.PUBLIC.REVENUE

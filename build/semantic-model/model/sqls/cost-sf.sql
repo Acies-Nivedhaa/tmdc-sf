@@ -1,6 +1,6 @@
 SELECT
-    id,
+    id AS cost_id,
     channel,
     cost
 FROM
-    public.cost
+    nivesfdepot.PUBLIC.COST

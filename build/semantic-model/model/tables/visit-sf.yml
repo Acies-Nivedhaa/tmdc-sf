@@ -8,16 +8,16 @@ tables:
     joins:
       - name: cost_sf
         relationship: one_to_one
-        sql: "{TABLE.id} = {cost_sf.id}"
+        sql: "{TABLE.visit_id} = {cost_sf.cost_id}"
 
     dimensions:
-      - name: id
+      - name: visit_id
         type: number
         column: id
         description: "ID"
         primary_key: true
 
-      - name: date
+      - name: visit_date
         type: number
         column: date
         description: "Revenue generated with each visit"

@@ -7,10 +7,10 @@ tables:
     joins:
       - name: revenue_sf
         relationship: one_to_one
-        sql: "{TABLE.id} = {cost_sf.id}"
+        sql: "{TABLE.cost_id} = {revenue_sf.id}"
 
     dimensions:
-      - name: id
+      - name: cost_id
         type: number
         column: id
         description: "ID"
@@ -26,9 +26,15 @@ tables:
         column: cost
         description: "Cost associated with the visit"
 
+      - name: calc_revenue
+        column: {revenue_sf.revenue}
+        type: number
+        public: false
+ 
+
     measures:
       - name: profit
-        sql: ({revenue_sf.revenue}-cost)
+        sql: (calc_revenue-cost)
         type: number 
         description: Profit earned
 

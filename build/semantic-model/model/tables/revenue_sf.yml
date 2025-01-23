@@ -5,7 +5,7 @@ tables:
     public: true
 
     dimensions:
-      - name: id
+      - name: revenue_id
         type: number
         column: id
         description: "ID"
