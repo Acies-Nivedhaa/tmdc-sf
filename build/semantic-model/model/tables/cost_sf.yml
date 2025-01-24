@@ -7,12 +7,12 @@ tables:
     joins:
       - name: revenue_sf
         relationship: one_to_one
-        sql: "{TABLE.cost_id} = {revenue_sf.id}"
+        sql: "{TABLE.cost_id} = {revenue_sf.revenue_id}"
 
     dimensions:
       - name: cost_id
         type: number
-        column: id
+        column: cost_id
         description: "ID"
         primary_key: true
 
@@ -34,7 +34,7 @@ tables:
 
     measures:
       - name: profit
-        sql: (calc_revenue-cost)
+        sql: SUM(calc_revenue-cost)
         type: number 
         description: Profit earned
 

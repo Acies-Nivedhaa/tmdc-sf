@@ -16,5 +16,10 @@ tables:
         column: revenue
         description: "Revenue generated with each visit"
 
+    measures:
+      - name: total_rev_id
+        sql: revenue_id
+        type: count_distinct 
+        description: distinct id
 
 

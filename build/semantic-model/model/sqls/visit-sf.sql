@@ -1,6 +1,6 @@
 SELECT
     id AS visit_id,
-    date AS visit_date,
+    CAST(date AS TIMESTAMP) AS visit_date,
     user_id,
     device,
     channel,

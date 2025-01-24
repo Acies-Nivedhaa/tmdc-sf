@@ -18,7 +18,7 @@ tables:
         primary_key: true
 
       - name: visit_date
-        type: number
+        type: time
         column: visit_date
         description: "Revenue generated with each visit"
 
@@ -48,3 +48,8 @@ tables:
         description: "Number of pages he viewed during the visit"
 
 
+    measures:
+      - name: total_user_id
+        sql: user_id
+        type: count_distinct 
+        description: distinct user id
