@@ -27,7 +27,7 @@ tables:
         description: "Cost associated with the visit"
 
       - name: calc_revenue
-        column: {revenue_sf.revenue}
+        column: "{revenue_sf.revenue}"
         type: number
         description: Revenue
         public: false
@@ -35,7 +35,7 @@ tables:
 
     measures:
       - name: profit
-        sql: SUM(calc_revenue-cost)
+        sql: SUM({TABLE.calc_revenue}-{TABLE.cost})
         type: number 
         description: Profit earned
 

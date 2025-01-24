@@ -37,7 +37,7 @@ lens:
         memory: 1048Mi
   worker:  #(optional)
     replicas: 1 # Number of Worker replicas (optional)
-    logLevel: debug # Logging level for Worker (optional)
+    logLevel: info # Logging level for Worker (optional)
     resources: # CPU and memory configurations for Worker (optional)
       requests:
         cpu: 100m
