@@ -1,6 +1,6 @@
 tables:
   - name: cost_sf
-    sql: {{ load_sql('cost-sf') }}
+    sql: {{ load_sql('cost_sf') }}
     description: Captures details of users and their activity on the website
     public: true 
 
@@ -29,6 +29,7 @@ tables:
       - name: calc_revenue
         column: {revenue_sf.revenue}
         type: number
+        description: Revenue
         public: false
  
 

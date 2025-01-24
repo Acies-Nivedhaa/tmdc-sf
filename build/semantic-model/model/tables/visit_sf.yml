@@ -1,6 +1,6 @@
 tables:
   - name: visit_sf
-    sql: {{ load_sql('visit-sf') }}
+    sql: {{ load_sql('visit_sf') }}
     description: Captures details of users and their visits
     public: true 
 

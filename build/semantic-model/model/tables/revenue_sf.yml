@@ -1,6 +1,6 @@
 tables:
   - name: revenue_sf
-    sql: {{ load_sql('revenue-sf') }}
+    sql: {{ load_sql('revenue_sf') }}
     description: Captures details of users and their activity on the website
     public: true
 
