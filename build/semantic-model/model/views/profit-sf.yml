@@ -1,6 +1,6 @@
 views:
-  - name: profit_sf
-    description: This metric calculates the profict from revenue and the cost
+  - name: profit_sf_view
+    description: This metric calculates the profit from revenue and the cost
     public: true
     meta:
       title: User Engagement
