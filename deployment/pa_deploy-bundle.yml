@@ -1,0 +1,13 @@
+name: useranalyis-sf-bundle
+version: v1beta
+type: bundle
+tags:
+  - dataproduct
+description: This bundle resource is for user analysis data product
+layer: "user"
+bundle:
+  resources:
+    - id: lens
+      file: C:\Users\Nivedhaa\dataos-ctl-windows-amd64\windows-amd64\tmdc-sf\build\semantic-model\lens.yaml
+      workspace: public
+    

@@ -1,0 +1,45 @@
+name: useranalysis-data-product
+version: v1beta
+entity: product
+type: data
+tags:
+  - DPDomain.User Analysis
+  - DPUsecase.Customer Segmentation
+  - DPTier.User Aligned
+
+description: Analysing user information
+
+# refs:
+# - title: 
+#   href: https://dataos.info/interfaces/cli/command_reference/#workspace
+
+v1beta:
+  data:
+    meta:
+      title: User Analysis Data Product
+      # sourceCodeUrl: https://github.com/Siva1316/Data_Os_Handson
+      sourceCodeUrl: https://github.com/Acies-Nivedhaa/tmdc-sf
+      # trackerUrl: https://rubikai.atlassian.net/browse/DPRB-65
+ 
+    collaborators:
+      - name: acies04
+        description: owner
+    
+    resource:
+      refType: dataos
+      ref: bundle:v1beta:useranalyis-sf-bundle
+
+    inputs:
+      - refType: dataos
+        ref: dataos://nivesfdepot:public/VISIT
+
+      - refType: dataos
+        ref: dataos://nivesfdepot:public/REVENUE
+
+      - refType: dataos
+        ref: dataos://nivesfdepot:public/COST
+
+    ports:
+      lens:
+        ref: lens:v1alpha:user-engagement:public
+        refType: dataos
