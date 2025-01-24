@@ -3,7 +3,7 @@ views:
     description: This metric calculates the profict from revenue and the cost
     public: true
     meta:
-      title: user Engagement
+      title: User Engagement
       tags:   
         - DPDomain.User Engagement
       # metric:
@@ -15,8 +15,8 @@ views:
       - join_path: visit_sf
         prefix: true
         includes:
-          - id
-          - date
+          - visit_id
+          - visit_date
           - user_id
           - device
           - channel

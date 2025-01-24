@@ -7,7 +7,7 @@ tables:
     dimensions:
       - name: revenue_id
         type: number
-        column: id
+        column: revenue_id
         description: "ID"
         primary_key: true
 

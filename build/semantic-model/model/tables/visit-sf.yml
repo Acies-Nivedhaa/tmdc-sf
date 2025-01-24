@@ -13,13 +13,13 @@ tables:
     dimensions:
       - name: visit_id
         type: number
-        column: id
+        column: visit_id
         description: "ID"
         primary_key: true
 
       - name: visit_date
         type: number
-        column: date
+        column: visit_date
         description: "Revenue generated with each visit"
 
       - name: user_id
