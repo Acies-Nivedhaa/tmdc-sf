@@ -57,6 +57,9 @@ tables:
         description: Revenue
         public: false
 
+      - name: v_cost
+        column: "{cost_sf.cost}"
+
 
     measures:
       - name: total_user_id
@@ -65,6 +68,6 @@ tables:
         description: distinct user id
 
       - name: profit
-        sql: SUM({TABLE.calc_revenue}-{TABLE.cost})
+        sql: SUM({TABLE.calc_revenue}-{TABLE.v_cost})
         type: number 
         description: Profit earned
