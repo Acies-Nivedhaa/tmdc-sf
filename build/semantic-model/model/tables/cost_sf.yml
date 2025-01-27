@@ -4,11 +4,6 @@ tables:
     description: Captures details of users and their activity on the website
     public: true 
 
-    joins:
-      - name: revenue_sf
-        relationship: one_to_one
-        sql: "{TABLE.cost_id} = {revenue_sf.revenue_id}"
-
     dimensions:
       - name: cost_id
         type: number
@@ -26,17 +21,13 @@ tables:
         column: cost
         description: "Cost associated with the visit"
 
-      - name: calc_revenue
-        column: "{revenue_sf.revenue}"
-        type: number
-        description: Revenue
-        public: false
+
  
 
     measures:
-      - name: profit
-        sql: SUM({TABLE.calc_revenue}-{TABLE.cost})
-        type: number 
-        description: Profit earned
+      - name: total_channels
+        sql: channel
+        type: count_distinct 
+        description: distinct channels
 
 

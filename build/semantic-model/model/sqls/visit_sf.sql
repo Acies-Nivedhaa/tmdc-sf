@@ -8,3 +8,8 @@ SELECT
     page_count
 FROM
     nivesfdepot.PUBLIC.VISIT
+
+
+
+
+    

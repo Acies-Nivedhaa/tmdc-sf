@@ -1,47 +1,25 @@
-# name: nivesfdepot
-# version: v1
-# type: depot
-# tags:
-
-# layer: user
-# depot:
-#   type: snowflake
-#   description: 
-#   spec:
-#     warehouse: COMPUTE_WH
-#     url: sdxanuy-wr48932.snowflakecomputing.com
-#     database: TMDC_V1
-#   external: true
-#   connectionSecret:
-#     - acl: rw
-#       type: key-value-properties
-#       data:
-#         username: NIVEDHAA
-#         password: Skills@2025
-
-
-name: nivesfdepot
-version: v2alpha
-type: depot
-tags:
+name: nivesfdepot                                                     # Name of Depot
+version: v2alpha                                                      # Version
+type: depot                                                           # Type of file
+tags:                                                                 # Tags used to fetch this document
   - Snowflake depot
   - user data
 layer: user
-depot:
-  type: snowflake
-  description: Depot to fetch data from SNowflake datasource
-  snowflake:
-    warehouse: COMPUTE_WH
-    url: sdxanuy-wr48932.snowflakecomputing.com
-    database: TMDC_V1
+depot:                                                                # Depot parameters
+  type: snowflake                                                     # Type of data source
+  description: Depot to fetch data from SNowflake datasource          # Description of the depot
+  snowflake:                                                          # Snowflake parameters 
+    warehouse: COMPUTE_WH                                             # Warehouse name
+    url: sdxanuy-wr48932.snowflakecomputing.com                       # Individual Snowflake account URL
+    database: TMDC_V1                                                 # Database name
   external: true
-  secrets:
-    - name: nivesfdepot-r
+  secrets:                                                             # Instance Secret Reference
+    - name: nivesfdepot-r                                              # Read Instance file
       keys: 
         - nivesfdepot-r
       allkeys: true
 
-    - name: nivesfdepot-rw
+    - name: nivesfdepot-rw                                             # Read-Write Instance file
       keys: 
         - nivesfdepot-rw
       allkeys: true

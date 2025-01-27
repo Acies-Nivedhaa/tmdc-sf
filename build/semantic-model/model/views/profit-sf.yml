@@ -6,30 +6,21 @@ views:
       title: User Engagement
       tags:   
         - DPDomain.User Engagement
-      # metric:
-      #   expression: "0  * * * *"
-      #   timezone: "UTC"
-      #   window: "day"
+      metric:          #mandatory
+        expression: "30 6 * * 1-6"
+        timezone: "UTC"
+        window: "year"
 
+        # excludes: 
+        #   - vip_sales.rolling_12_months__decimal_quantity
+        #   - vip_sales.rolling_previous_12_months__decimal_quantity
+          
     tables:
       - join_path: visit_sf
         prefix: true
         includes:
-          - visit_id
-          - visit_date
-          - user_id
-          - device
-          - channel
-          - landing_page
-          - page_count
-
-      - join_path: revenue_sf
-        prefix: true
-        includes:
-          - revenue
-
-      - join_path: cost_sf
-        prefix: true
-        includes:
-          - cost
-          - profit
+          - profit  #MEasure
+          - user_id         #MEasure columns
+          - calc_revenue
+          - visit_id   #Groupby column
+          - visit_date # Timestamp-mandatory

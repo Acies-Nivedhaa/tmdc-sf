@@ -1,16 +1,20 @@
 version: v1
-name: nivesfdepot-scanner
-type: workflow
-tags:
+name: nivesfdepot-scanner     # Scanner name
+type: workflow                # Type of file
+tags:                         # Tags used to search this file
   - snowflake
   - scanner
-description: The job scans schema tables and register metadata
-workflow:
-  dag:
-    - name: snowflakedepotjob
-      description: The job scans schema from snowflake depot tables and register metadata to metis
-      spec:
-        stack: scanner:2.0
+description: The job scans schema tables and register metadata    # Description of the scanner
+workflow:                     # Workflow parameters
+  dag:                        
+    - name: snowflakedepotjob # DAG name
+      description: The job scans schema from snowflake depot tables and register metadata to metis # Description of DAG
+      spec:                   # spec section
+        stack: scanner:2.0    
         compute: runnable-default
         stackSpec:
-          depot: dataos://nivesfdepot          # snowflake depot name
+          depot: dataos://nivesfdepot    # snowflake depot name
+
+
+
+          

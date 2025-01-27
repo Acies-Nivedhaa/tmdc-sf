@@ -9,7 +9,7 @@ views:
         - DPUsecase.Customer Segmentation
         - DPTier.User Aligned
 
-      metric:
+      metric:          #mandatory
         expression: "30 6 * * 1-6"
         timezone: "UTC"
         window: "year"
@@ -23,6 +23,6 @@ views:
         includes:
           - total_user_id  #MEasure
           - user_id         #MEasure columns
-          - channel   #Grouoby column
+          - channel   #Groupby column
           - visit_date # Timestamp-mandatory
           
