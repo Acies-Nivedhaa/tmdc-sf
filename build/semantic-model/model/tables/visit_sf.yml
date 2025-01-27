@@ -10,7 +10,6 @@ tables:
         relationship: one_to_one
         sql: "{TABLE.visit_id} = {cost_sf.cost_id}"
 
-    joins:
       - name: revenue_sf
         relationship: one_to_one
         sql: "{TABLE.visit_id} = {revenue_sf.revenue_id}"
