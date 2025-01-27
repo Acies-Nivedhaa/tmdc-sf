@@ -59,6 +59,9 @@ tables:
 
       - name: v_cost
         column: "{cost_sf.cost}"
+        type: number
+        description: Cost
+        public: false
 
 
     measures:
