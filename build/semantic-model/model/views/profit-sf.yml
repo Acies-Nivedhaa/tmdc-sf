@@ -6,6 +6,9 @@ views:
       title: User Engagement
       tags:   
         - DPDomain.User Engagement
+      export_to_board: true
+      iris:
+        timeseries: visit_sf.visit_dat
       metric:          #mandatory
         expression: "30 6 * * 1-6"
         timezone: "UTC"
