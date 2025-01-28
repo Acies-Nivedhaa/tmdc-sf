@@ -8,7 +8,7 @@ views:
         - DPDomain.User Engagement
       export_to_board: true
       iris:
-        timeseries: visit_sf.visit_dat
+        timeseries: visit_sf.visit_date
       metric:          #mandatory
         expression: "30 6 * * 1-6"
         timezone: "UTC"
