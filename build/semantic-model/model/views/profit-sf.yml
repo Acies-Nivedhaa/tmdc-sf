@@ -25,5 +25,6 @@ views:
           - profit  #MEasure
           - user_id         #MEasure columns
           - calc_revenue
+          - v_cost
           - visit_id   #Groupby column
           - visit_date # Timestamp-mandatory

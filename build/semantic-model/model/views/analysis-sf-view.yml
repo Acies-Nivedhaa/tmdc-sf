@@ -25,6 +25,6 @@ views:
         includes:
           - total_user_id  #MEasure
           - user_id         #MEasure columns
-          - channel   #Groupby column
+          # - channel   #Groupby column
           - visit_date # Timestamp-mandatory
           
