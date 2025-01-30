@@ -12,7 +12,9 @@ views:
       metric:          #mandatory
         expression: "30 6 * * 1-6"
         timezone: "UTC"
-        window: "year"
+        window: "day"
+        excludes:
+          - user_id
           
     tables:
       - join_path: visit_sf
