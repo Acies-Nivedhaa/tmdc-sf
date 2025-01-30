@@ -22,9 +22,8 @@ views:
       - join_path: visit_sf
         prefix: true
         includes:
-          - profit  #MEasure
-          - user_id         #MEasure columns
-          - calc_revenue
+          - profit  #MEasure       
+          - calc_revenue #MEasure columns #check
           - v_cost
           - visit_id   #Groupby column
           - visit_date # Timestamp-mandatory

@@ -71,6 +71,6 @@ tables:
         description: distinct user id
 
       - name: profit
-        sql: SUM({TABLE.calc_revenue}-{TABLE.v_cost})
+        sql: SUM({TABLE.calc_revenue}-{TABLE.v_cost})   #aggregate function mandatory
         type: number 
         description: Profit earned
