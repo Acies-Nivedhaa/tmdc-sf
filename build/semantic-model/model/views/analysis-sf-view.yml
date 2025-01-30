@@ -8,16 +8,11 @@ views:
         - DPDomain.User Analysis
         - DPUsecase.Customer Segmentation
         - DPTier.User Aligned
-      # export_to_board: true
-      # iris:
-      #   timeseries: visit_sf.visit_date
+
       metric:          #mandatory
         expression: "30 6 * * 1-6"
         timezone: "UTC"
         window: "year"
-        # excludes: 
-        #   - vip_sales.rolling_12_months__decimal_quantity
-        #   - vip_sales.rolling_previous_12_months__decimal_quantity
           
     tables:
       - join_path: visit_sf
