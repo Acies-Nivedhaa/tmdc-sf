@@ -1,5 +1,5 @@
 SELECT
-    CAST(id AS DOUBLE) AS revenue_id,
-    CAST(revenue AS DOUBLE)
+    CAST(id AS INTEGER) AS revenue_id,
+    CAST(revenue AS INTEGER) AS revenue
 FROM
     PUBLIC.REVENUE

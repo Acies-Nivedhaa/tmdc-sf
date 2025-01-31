@@ -1,11 +1,11 @@
 SELECT
-    id AS visit_id,
+    CAST(id AS INTEGER) AS visit_id,
     CAST(date AS TIMESTAMP) AS visit_date,
-    user_id,
+    CAST(user_id AS INTEGER) as user_id,
     device,
     channel,
     landing_page,
-    page_count
+    CAST(page_count AS INTEGER) as page_count
 FROM
     PUBLIC.VISIT
 
