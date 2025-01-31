@@ -1,6 +1,6 @@
 SELECT
-    id AS cost_id,
+    CAST(id AS INTEGER) AS cost_id,
     channel,
-    cost
+    CAST(cost AS DOUBLE) as cost
 FROM
     PUBLIC.COST
