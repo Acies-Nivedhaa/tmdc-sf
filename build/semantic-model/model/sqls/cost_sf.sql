@@ -3,4 +3,4 @@ SELECT
     channel,
     cost
 FROM
-    nivesfdepot.PUBLIC.COST
+    PUBLIC.COST

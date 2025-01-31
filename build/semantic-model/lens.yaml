@@ -15,9 +15,8 @@ lens:
 
     # Data Source configuration     
   source:
-    type: themis 
-    name: minion
-    catalog: nivesfdepot
+    type: depot 
+    name: nivesfdepot
     
   repo: # Lens model code repository configuration (mandatory)
     url: https://github.com/Acies-Nivedhaa/tmdc-sf # URL of repository containing the Lens model (mandatory)

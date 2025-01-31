@@ -11,7 +11,8 @@ depot:                                                                # Depot pa
   snowflake:                                                          # Snowflake parameters 
     warehouse: COMPUTE_WH                                             # Warehouse name
     url: sdxanuy-wr48932.snowflakecomputing.com                       # Individual Snowflake account URL - remove https://
-    database: TMDC_V1                                                 # Database name
+    database: TMDC_V1  
+    account: sdxanuy-wr48932                                           # Database name
   external: true
   secrets:                                                             # Instance Secret Reference
     - name: nivesfdepot-r                                              # Read Instance file

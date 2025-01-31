@@ -7,10 +7,10 @@ tags:
 description: Applying quality checks for the cost data
 workspace: public
 workflow:
-  # schedule:
-  #   cron: '0 * * * *'
-  #  # endOn: '2023-12-12T22:00:00Z'
-  #   concurrencyPolicy: Allow
+  schedule:
+    cron: '0 * * * *'
+   # endOn: '2023-12-12T22:00:00Z'
+    concurrencyPolicy: Allow
   dag:
     - name: soda-cost-quality
       spec:
@@ -37,27 +37,21 @@ workflow:
                 - schema:
                     name: Ensure essential columns are present
                     fail:
-                      when required column missing: [cost_id]
+                      when required column missing: [ID]
                     attributes:
                       category: Schema
-                      title: Cost ID is for essential analysis
+                      title: Cost ID is for essential analysis 
 
-                - schema:
-                    name: Detect forbidden columns
-                    fail:
-                      when forbidden column present: [credit_card_number, social_security_number]
+                - invalid_count(ID) = 1 :
+                    name: Customer Id  should not be zero
+                    valid min: 1
                     attributes:
-                      category: Schema
-                      title: Credit Card number and social security number should not be present in the table 
+                      category: Validity
                 
-                - min(revenue) >= 0:
-                    name: Revenue should be greater than 0
+                - min(COST) >= 0:
+                    name: Cost should be 0 or greater than that
                     attributes:
                       category: Accuracy
                       title: Validate minimum revenue
 
-                - duplicate_count(cost_id) = 0:
-                    name:  Advertisement Id should not be duplicated
-                    attributes:
-                      category: Uniqueness
 

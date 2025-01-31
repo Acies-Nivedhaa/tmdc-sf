@@ -7,9 +7,9 @@ SELECT
     landing_page,
     page_count
 FROM
-    nivesfdepot.PUBLIC.VISIT
+    PUBLIC.VISIT
 
 
 
 
-    
+        
