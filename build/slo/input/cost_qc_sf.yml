@@ -41,9 +41,16 @@ workflow:
                     attributes:
                       category: Schema
                       title: Cost ID is for essential analysis 
+                - schema:
+                    name: Detect forbidden columns
+                    fail:
+                      when forbidden column present: [CREDIT_CARD_NUMBER]
+                    attributes:
+                      category: Schema
+                      title: Credit Card number should not be present in the table
 
                 - invalid_count(ID) = 1 :
-                    name: Customer Id  should not be zero
+                    name: Cost Id  should not be zero
                     valid min: 1
                     attributes:
                       category: Validity

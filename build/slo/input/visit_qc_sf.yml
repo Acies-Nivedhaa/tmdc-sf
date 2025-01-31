@@ -1,4 +1,4 @@
-name: soda-visit
+name: soda-visit-sf-quality
 version: v1
 type: workflow
 tags:
@@ -7,12 +7,12 @@ tags:
 description: Applying quality checks for the visit data
 workspace: public
 workflow:
-  # schedule:
-  #   cron: '00 08 * * *'
-  #  # endOn: '2023-12-12T22:00:00Z'
-  #   concurrencyPolicy: Forbid
+  schedule:
+    cron: '0 * * * *'
+   # endOn: '2023-12-12T22:00:00Z'
+    concurrencyPolicy: Allow
   dag:
-    - name: soda-visit
+    - name: soda-cost-quality
       spec:
         stack: soda+python:1.0
         compute: runnable-default
@@ -26,45 +26,39 @@ workflow:
         logLevel: INFO # WARNING, ERROR, DEBUG
         stackSpec:
           inputs:
-            - dataset: dataos://lakehouse:customer_relationship_management/customer_data
+            - dataset: dataos://nivesfdepot:PUBLIC/VISIT
               options:
-                engine: minerva
-                clusterName: miniature
+                engine: Themis
+                clusterName: minion
               profile:
                 columns:
                   - include *
               checks:  
                 - schema:
-                    name: Data type of birth year should be integer
+                    name: Ensure essential columns are present
                     fail:
-                      when wrong column type:
-                        birth_year: bigint
+                      when required column missing: [ID]
                     attributes:
                       category: Schema
-
-                - freshness(created_at) < 7d:
-                    name: If data is older than 7 days 
+                      title: Visit ID is for essential analysis 
+                - schema:
+                    name: Detect forbidden columns
+                    fail:
+                      when forbidden column present: [CREDIT_CARD_NUMBER]
                     attributes:
-                      category: Freshness
- 
-                - invalid_count(customer_id) = 1 :
-                    name: Customer Id  should not be zero
+                      category: Schema
+                      title: Credit Card number should not be present in the table
+
+                - invalid_count(ID) = 1 :
+                    name: Cost Id  should not be zero
                     valid min: 1
                     attributes:
                       category: Validity
- 
-                - missing_count(customer_id) = 0:
-                    name:  Customer Id should not be zero
-                    attributes:
-                      category: Completeness
-
-                - duplicate_count(customer_id) = 0:
-                    name:  Customer Id should not be duplicated
-                    attributes:
-                      category: Uniqueness
- 
-                - avg_length(country) > 2:
-                    name:  Average length of country more than 2
+                
+                - min(COST) >= 0:
+                    name: Cost should be 0 or greater than that
                     attributes:
                       category: Accuracy
- 
+                      title: Validate minimum revenue
+
+
