@@ -1,0 +1,64 @@
+version: v1  # v1
+name: wf-user-engagement-data
+type: workflow
+tags:
+  - DPDomain.User Analysis
+  - DPUsecase.Customer Segmentation
+  - DPTier.User Aligned
+description: Creating the output table that tracks user activity based on page visits and page counts
+workflow:
+  dag:
+    - name: dg-user-eng-data
+      description: Tracks user activity by aggregating visit counts and page interaction per user
+      spec:
+        tags:
+          - DPDomain.User Analysis
+          - DPUsecase.Customer Segmentation
+          - DPTier.User Aligned
+        stack: flare:6.0
+        compute: runnable-default
+        stackSpec:
+          driver:
+            coreLimit: 2000m
+            cores: 1
+            memory: 1000m
+          executor:
+            coreLimit: 2000m
+            cores: 1
+            instances: 1
+            memory: 2000m
+          job:
+            explain: true
+            logLevel: INFO
+            inputs:
+              - name: useregmt-data
+                dataset: dataos://nivesfdepot:public/VISIT
+                format: iceberg
+
+            steps:
+              - sequence:
+                  - name: final
+                    sql: >
+                      SELECT 
+                          user_id,
+                          COUNT(visit_id) AS total_visits,
+                          SUM(page_count) AS total_page_count,
+                          AVG(page_count) AS avg_page_count_per_visit
+                      FROM useregmt-data
+                      GROUP BY user_id;
+           
+            outputs:
+              - name: final
+                dataset: dataos://nivesfdepot:public/user_engagement_sf
+                format: Iceberg
+                options:
+                  saveMode: overwrite
+                  iceberg:
+                    properties:
+                      write.format.default: parquet
+                      write.metadata.compression-codec: gzip
+                    # partitionSpec:
+                    #   - type: day
+                    #     column: date_time
+                    #     name: day
+

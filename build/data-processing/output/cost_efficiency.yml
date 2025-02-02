@@ -1,16 +1,20 @@
 version: v1  # v1
-name: wf-useranalysis-op
+name: wf-cost-eff-data
 type: workflow
 tags:
-  - user engagement
-description: Ingesting user analysis.
+  - DPDomain.User Analysis
+  - DPUsecase.Customer Segmentation
+  - DPTier.User Aligned
+description: Output table that measures total and average cost per channel
 workflow:
   dag:
-    - name: dg-useranalysis-data
-      description: Analysing the customer data for a period of 30 days from the date of first visit
+    - name: dg-cost-eff-data
+      description: Measures total and average marketing costs per channel to evaluate spending effectiveness
       spec:
         tags:
-          - user engagement
+          - DPDomain.User Analysis
+          - DPUsecase.Customer Segmentation
+          - DPTier.User Aligned
         stack: flare:6.0
         compute: runnable-default
         stackSpec:
@@ -27,21 +31,25 @@ workflow:
             explain: true
             logLevel: INFO
             inputs:
-              - name: city_connect
-                dataset: dataos://nivesfdepot:PUBLIC/VISIT
-                format: snowflake
-                options:
-                  sfWarehouse: "COMPUTE_WH"
+              - name: costeff-data
+                dataset: dataos://nivesfdepot:public/COST
+                format: iceberg
 
             steps:
               - sequence:
                   - name: final
-                    sql: > 
-                      
+                    sql: >
+                      SELECT 
+                          channel,
+                          SUM(cost) AS total_cost,
+                          AVG(cost) AS avg_cost_per_entry
+                      FROM costeff-data
+                      GROUP BY channel;
+
            
             outputs:
               - name: final
-                dataset: dataos://lakehouse:customer_relationship_management/cross_sell_recommendations?acl=rw
+                dataset: dataos://nivesfdepot:public/cost_efficiency_sf
                 format: Iceberg
                 options:
                   saveMode: overwrite

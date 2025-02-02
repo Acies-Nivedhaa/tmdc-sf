@@ -12,7 +12,7 @@ workflow:
    # endOn: '2023-12-12T22:00:00Z'
     concurrencyPolicy: Allow
   dag:
-    - name: soda-cost-quality
+    - name: soda-visit-quality
       spec:
         stack: soda+python:1.0
         compute: runnable-default
@@ -49,16 +49,34 @@ workflow:
                       category: Schema
                       title: Credit Card number should not be present in the table
 
+                - avg_length(channel) <= 3:
+                    name: Channel should have an average length lesser than or equal to 3 characters
+                    attributes:
+                      category: Accuracy
+                      title: Validate average length of channel entries
+
                 - invalid_count(ID) = 1 :
                     name: Cost Id  should not be zero
                     valid min: 1
                     attributes:
                       category: Validity
-                
-                - min(COST) >= 0:
-                    name: Cost should be 0 or greater than that
+
+                - missing_count(user_id) = 0:
+                    name: User ID should not have any missing values
                     attributes:
-                      category: Accuracy
-                      title: Validate minimum revenue
+                      category: Completeness
+                      title: Ensure user id is present in all records
+
+                - schema:
+                    name: Validate column data types
+                    warn:
+                      when wrong column type:
+                        channel: string
+                        device: string
+                        landing_page: string
+                    attributes:
+                      category: Schema
+                      title: Columns should have appropriate data types to prevent processing errors
+                
 
 

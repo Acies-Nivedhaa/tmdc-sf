@@ -39,6 +39,13 @@ v1beta:
       - refType: dataos
         ref: dataos://nivesfdepot:public/COST
 
+    outputs:
+      - refType: dataos
+        ref: dataos://nivesfdepot:public/cost_efficiency_sf
+
+      - refType: dataos
+        ref: dataos://nivesfdepot:public/user_engagement_sf
+
     ports:
       lens:
         ref: lens:v1alpha:user-engagement:public
