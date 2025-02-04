@@ -1,0 +1,70 @@
+name: soda-cost-eff-quality
+version: v1
+type: workflow
+tags:
+  - workflow
+  - soda-checks
+description: Applying quality checks for the cost efficiency data
+workspace: public
+workflow:
+  schedule:
+    cron: '0 * * * *'
+    endOn: '2025-04-02T22:00:00Z'
+    concurrencyPolicy: Allow
+  dag:
+    - name: soda-cost-eff-quality
+      spec:
+        stack: soda+python:1.0
+        compute: runnable-default
+        resources:
+          requests:
+            cpu: 1000m
+            memory: 250Mi
+          limits:
+            cpu: 1000m
+            memory: 250Mi
+        logLevel: INFO # WARNING, ERROR, DEBUG
+        stackSpec:
+          inputs:
+            - dataset: dataos://nivesfdepot:PUBLIC/COST_EFFICIENCY_SF
+              options:
+                engine: Themis
+                clusterName: minion
+              profile:
+                columns:
+                  - include *
+              checks:  
+                - schema:
+                    name: Ensure essential columns are present
+                    fail:
+                      when required column missing: [CHANNEL]
+                    attributes:
+                      category: Schema
+                      title: User ID is for essential analysis
+
+                - missing_count(CHANNEL) < 1:
+                    missing values: [NA, n/a]
+                    name: Channel should not have 'NA' or 'n/a' as values
+                    attributes:
+                      category: Completeness
+                      title: Detect and handle specific missing value indicators in Channel type
+
+                - invalid_count(CHANNEL) = 0:
+                    valid min length: 3
+                    valid max length: 5
+                    name: Channel should have a valid length
+                    attributes:
+                      category: Validity
+                      title: Channel should be between 3 and 5 characters long
+
+                - schema:
+                    name: Validate column data types
+                    warn:
+                      when wrong column type:
+                        TOTAL_COST: integer
+                    attributes:
+                      category: Schema
+                      title: Columns should have appropriate data types to prevent processing errors
+                
+
+

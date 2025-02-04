@@ -1,0 +1,58 @@
+name: soda-user-eng-quality
+version: v1
+type: workflow
+tags:
+  - workflow
+  - soda-checks
+description: Applying quality checks for the user engagement data
+workspace: public
+workflow:
+  schedule:
+    cron: '0 * * * *'
+    endOn: '2025-04-02T22:00:00Z'
+    concurrencyPolicy: Allow
+  dag:
+    - name: soda-user-eng-quality
+      spec:
+        stack: soda+python:1.0
+        compute: runnable-default
+        resources:
+          requests:
+            cpu: 1000m
+            memory: 250Mi
+          limits:
+            cpu: 1000m
+            memory: 250Mi
+        logLevel: INFO # WARNING, ERROR, DEBUG
+        stackSpec:
+          inputs:
+            - dataset: dataos://nivesfdepot:PUBLIC/USER_ENGAGEMENT_SF
+              options:
+                engine: Themis
+                clusterName: minion
+              profile:
+                columns:
+                  - include *
+              checks:  
+                - schema:
+                    name: Ensure essential columns are present
+                    fail:
+                      when required column missing: [USER_ID]
+                    attributes:
+                      category: Schema
+                      title: User ID is for essential analysis
+
+                - duplicate_count(USER_ID) = 0:
+                    name: Customer numbers should be unique
+                    attributes:
+                      category: Uniqueness
+                      title: Ensure each customer number is unique
+
+                - missing_count(USER_ID) = 0:
+                    name: User ID should not have any missing values
+                    attributes:
+                      category: Completeness
+                      title: Ensure user id is present in all records
+                
+
+

@@ -6,9 +6,9 @@ tags:
   - data-product
 description: The job scans data product from Snowflake
 workflow:
-  # schedule:
-  #   cron: '*/20 * * * *'
-  #   concurrencyPolicy: Forbid
+  schedule:
+    cron: '*/20 * * * *'
+    concurrencyPolicy: Forbid
   dag:
     - name: scan-pg-data-product-job
       description: The job scans data-product from Snowflake and register data to metis

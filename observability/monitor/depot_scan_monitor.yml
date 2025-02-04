@@ -1,0 +1,28 @@
+# Resource meta section
+name: depot-scanner-monitor
+version: v1alpha
+type: monitor
+tags:
+  - dataos:type:resource
+  - workflow-success-monitor
+description: Attention! workflow run is succeeded.
+layer: user
+monitor:
+# Monitor-specific section
+  schedule: '*/5 * * * *'
+  incident:
+    name: workflowrunning
+    severity: high
+    incident_type: workflowruntime
+  type: report_monitor
+  # Report Monitor specification
+  report:
+    source:
+      dataosInstance:
+        path: /collated/api/v1/reports/resources/runtime?id=workflow:v1:nivesfdepot-scanner:public     
+    conditions:
+      - valueComparison:
+          observationType: runtime
+          valueJqFilter: '.value'
+          operator: equals
+          value: succeeded

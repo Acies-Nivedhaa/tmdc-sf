@@ -55,6 +55,12 @@ workflow:
                       category: Accuracy
                       title: Validate average length of channel entries
 
+                - duplicate_count(ID) = 0:
+                    name: Visit ID should be unique
+                    attributes:
+                      category: Uniqueness
+                      title: Ensure each customer number is unique
+
                 - invalid_count(ID) = 1 :
                     name: Cost Id  should not be zero
                     valid min: 1

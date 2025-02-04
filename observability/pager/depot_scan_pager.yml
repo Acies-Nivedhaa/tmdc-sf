@@ -1,0 +1,31 @@
+# Resource meta section 
+name: depot-scan-pager
+version: v1alpha
+type: pager
+description: sends alerts to email when a workflow runs successfully.
+
+# Pager-specific section 
+pager:
+
+  # Conditions 
+  conditions: 
+    - valueJqFilter: .properties.name
+      operator: equals
+      value: workflowrunning
+    - valueJqFilter: .properties.severity
+      operator: equals
+      value: high
+
+  # Output 
+  output:
+    email:
+      emailTargets:
+        - nivedhaa.ravichandren@aciesglobal.com
+      subject: "✅ Success: Workflow Successful"
+      body: |
+        Dear Team,
+
+        The workflow has run successfully.
+
+        Regards,  
+        Automated Monitoring System

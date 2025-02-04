@@ -31,9 +31,8 @@ workflow:
             explain: true
             logLevel: INFO
             inputs:
-              - name: useregmt-data
+              - name: useregmt_data
                 dataset: dataos://nivesfdepot:public/VISIT
-                format: iceberg
 
             steps:
               - sequence:
@@ -41,16 +40,15 @@ workflow:
                     sql: >
                       SELECT 
                           user_id,
-                          COUNT(visit_id) AS total_visits,
+                          COUNT(id) AS total_visits,
                           SUM(page_count) AS total_page_count,
                           AVG(page_count) AS avg_page_count_per_visit
-                      FROM useregmt-data
+                      FROM useregmt_data
                       GROUP BY user_id;
            
             outputs:
               - name: final
                 dataset: dataos://nivesfdepot:public/user_engagement_sf
-                format: Iceberg
                 options:
                   saveMode: overwrite
                   iceberg:
