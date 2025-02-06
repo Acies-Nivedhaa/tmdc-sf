@@ -8,6 +8,7 @@ description: The job scans data product from Snowflake
 workflow:
   schedule:
     cron: '*/20 * * * *'
+    endOn: '2025-02-05T22:00:00Z'
     concurrencyPolicy: Forbid
   dag:
     - name: scan-pg-data-product-job

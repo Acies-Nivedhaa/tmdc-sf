@@ -1,0 +1,65 @@
+version: v1
+name: wf-visit-dummy
+type: workflow
+tags:
+  - user analysis
+description: Ingesting visit data in lakehouse
+workflow:
+  schedule:
+    cron: '*/15 * * * *'
+    endOn: '2025-02-05T22:00:00Z'
+    concurrencyPolicy: Forbid
+  dag:
+    - name: dg-visit-data
+      spec:
+        tags:
+          - user-analysis
+        stack: flare:6.0
+        compute: runnable-default
+        stackSpec:
+          driver:
+            coreLimit: 2000m
+            cores: 1
+            memory: 2000m
+          executor:
+            coreLimit: 2000m
+            cores: 1
+            instances: 1
+            memory: 2000m
+          job:
+            explain: true
+            logLevel: INFO
+            inputs:
+              - name: visits
+                dataset: dataos://nivesfdepot:PUBLIC/VISIT
+                options:
+                  inferSchema: true
+
+            steps:
+              - sequence:
+                  - name: final
+                    sql: >
+                      SELECT 
+                        ID  as visit_id,
+                        CAST(DATE AS TIMESTAMP) as visit_date,
+                        user_id, 
+                        device, 
+                        channel,
+                        landing_page,
+                        page_count
+                      FROM visits
+                    
+            outputs:
+              - name: final
+                dataset: dataos://lakehouse:nivedhaa/visit_dummy?acl=rw
+                options:
+                  saveMode: overwrite
+                  iceberg:
+                    properties:
+                      write.format.default: parquet
+                      write.metadata.compression-codec: gzip
+                    # partitionSpec:
+                    #   - type: day
+                    #     column: date_time
+                    #     name: day
+

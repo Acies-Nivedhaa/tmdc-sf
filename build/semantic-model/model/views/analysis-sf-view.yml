@@ -10,7 +10,7 @@ views:
         - DPTier.User Aligned
 
       metric:          #mandatory
-        expression: "30 6 * * 1-6"
+        expression: "30 6 L * *"
         timezone: "UTC"
         window: "day"
         excludes:

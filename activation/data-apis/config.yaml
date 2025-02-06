@@ -1,0 +1,30 @@
+# name: superstore
+# description: A talos snowflake app
+# version: 0.1.6
+# auth:
+#   heimdallUrl: https://liberal-donkey.dataos.app/heimdall
+# logLevel: DEBUG  
+# sources:
+#   - name: snowflake
+#     type: depot
+
+    
+name: profit_api
+description: An api for calculating profit. 
+version: 0.0.1
+auth:
+  heimdallUrl: https://dataos-training.dataos.app/heimdall
+  userGroups:
+    - name: default
+      description: Default group to accept everyone
+      includes: "*"
+logLevel: 'DEBUG' 
+# cachePath: tmp
+sources:
+  - name: lens # profile name
+    type: lens
+    lensName: 'public:user-engagement'
+
+metrics:
+  type: summary
+  percentiles: [ 0.5, 0.75, 0.95, 0.98, 0.99 ]

@@ -1,0 +1,11 @@
+urlPath: /cost_efficiency
+description: Measures total and average marketing costs per channel to evaluate spending effectiveness
+source: lens
+# response:
+#   - name: customer_id
+#   - name: customer_segments
+#   - name: cross_sell_recommendations
+# cache:
+#   - cacheTableName: 'cross_sell_cache'
+#     sql: SELECT product_customer_id as customer_id FROM product
+#     source: lens
