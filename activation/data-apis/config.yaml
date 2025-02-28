@@ -1,14 +1,3 @@
-# name: superstore
-# description: A talos snowflake app
-# version: 0.1.6
-# auth:
-#   heimdallUrl: https://liberal-donkey.dataos.app/heimdall
-# logLevel: DEBUG  
-# sources:
-#   - name: snowflake
-#     type: depot
-
-    
 name: profit_api
 description: An api for calculating profit. 
 version: 0.0.1

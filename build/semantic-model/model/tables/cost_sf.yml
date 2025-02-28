@@ -22,7 +22,7 @@ tables:
         description: "Cost associated with the visit"
 
 
- 
+
 
     measures:
       - name: total_channels
